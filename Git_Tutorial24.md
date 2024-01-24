@@ -236,6 +236,8 @@ git config --global user.email "email@example.com"
 
 - 注 2：`git rebase` 的作用是将提交逐个应用到目标分支上，并按照提交顺序重新组织提交历史。这种操作可以让代码库的提交历史更加整洁、线性，并且方便后续的代码审查和维护。但可能需要解决多次冲突，且具有一定风险性。参见 [一文搞懂 git rebase](https://juejin.cn/post/7038093620628422669)。
 
+
+
 ### 六、Git 与 GitHub
 
 #### 6.1 SSH 配置
@@ -278,8 +280,8 @@ git config --global user.email "email@example.com"
 - 克隆远程库到本地
 
   ```bash
-  git clone /path/to/repo
-  git clone --recursive /path/to/repo
+  git clone [URL]
+  git clone --recursive [URL]
   ```
 
 - 创建远程分支到本地
@@ -300,6 +302,13 @@ git config --global user.email "email@example.com"
   git remote rm origin
   ```
 
+- 导入 submodule
+
+  ```bash
+  git submodule add -b stable [URL] [PATH]
+  git submodule update --init
+  ```
+
 - 多人协同的基本工作模式
 
   1. 首先，可以试图用`git push origin <branch-name>`推送自己的修改。
@@ -312,11 +321,26 @@ git config --global user.email "email@example.com"
 
 - 注 2：基于 GitHub 的权限管理，有时首先需要 fork 远端仓库，在 fork 的仓库中提交，再对原仓库发起 pull request，详见 [Github Fork 使用详解](https://zhuanlan.zhihu.com/p/605697407) 。
 
+
+
 ### 七、Git 与 vscode
 
-#### 1.1 
+#### 1.1 GUI
+
+- 充分利用图形化界面的优势，vscode 可以很方便地帮助追踪代码修改的历史、进行冲突处理等。
+
+#### 1.2 Copilot
+
+- vscode 安装 copilot 插件。
+- GitHub 通过学生认证，参考 [Github学生认证及学生包保姆级申请指南](https://zhuanlan.zhihu.com/p/578964972) 。
 
 ### 八、参考资料
+
+- https://www.liaoxuefeng.com/wiki/896043488029600
+
+- https://git-scm.com/book/zh/v2
+
+- 以及上文涉及到的所有文献
 
 ### 九、附录
 
@@ -355,22 +379,25 @@ git config --global user.email "email@example.com"
 #### 1.3 Git 文件对象的关系示例
 
 ```
-                                          (parent)
-HEAD--> refs/heads/work--> 4f7399(commit) +-------> b767d7(commit)<---refs/heads/master
-                              +                             +
-                              |                             |
-                              v                             v
-                         082b6d(tree)                   ca964f(tree)
-                              +                             +
-                              |                             |
-               +-----------------------------+     +--------+-----------+
-               |              |              |     |                    |
-               v              v              v     v                    v
-           9aeacd(tree)    8cc95f(blob)    065bca(blob)            824244(tree)
-         src (version 2)    Makefile         README               src (version 1)
-               +                                                        +
-               |                                                        |
-               v                                                        v
-          79ee69(blob)                                             3b18e5(blob)
-        file1.txt (version 2)                                    file1.txt (version 1)
+            HEAD
+             |
+             v                  (parent)
+      refs/heads/work--> 4f7399 +-------> b767d7<---refs/heads/master
+                        (commit)         (commit)
+                           +                +
+                           |                |
+                           v                v
+                      082b6d(tree)      ca964f(tree)
+                           +                +
+                           |                |
+           +---------------+---------+    +-+------------------+
+           |               |         |    |                    |
+           v               v         v    v                    v
+      9aeacd(tree)    8cc95f(blob) 065bca(blob)           824244(tree)
+      src (version 2) Makefile       README            src (version 1)
+           +                                                   +
+           |                                                   |
+           v                                                   v
+      79ee69(blob)                                        3b18e5(blob)
+      file1.txt (version 2)                      file1.txt (version 1)
 ```
