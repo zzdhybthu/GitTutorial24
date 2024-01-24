@@ -353,7 +353,7 @@ git config --global user.email "email@example.com"
 ```ASN.1
 ├── branches             不这么重要，暂不用管                    
 ├── config               git配置信息，包括用户名，email，remote repository的地址，本地branch和remote
-|                        branch的follow关系
+│                        branch的follow关系
 ├── description          该git库的描述信息，如果使用了GitWeb的话，该描述信息将会被显示在该repo的页面上
 ├── HEAD                 工作目录当前状态对应的commit，一般来说是当前branch的head，HEAD也可以通过git checkout 命令被直接设置到一个特定的commit上，这种情况被称之为 detached HEAD      
 ├── hooks                钩子程序，可以被用于在执行git命令时自动执行一些特定操作，例如加入changeid
