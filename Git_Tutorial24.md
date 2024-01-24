@@ -294,6 +294,12 @@ git config --global user.email "email@example.com"
   git remote -v
   ```
 
+- 删除远程库
+
+  ```bash
+  git remote rm origin
+  ```
+
 - 多人协同的基本工作模式
 
   1. 首先，可以试图用`git push origin <branch-name>`推送自己的修改。
