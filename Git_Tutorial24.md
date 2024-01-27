@@ -1,6 +1,6 @@
 # Git Tutorial 2024
 
-​																																	**无 21 陈子熠**
+​																															**无 21 陈子熠**
 
 ### 一、什么是Git？
 
@@ -27,7 +27,7 @@
 
 - 参见 [Download for macOS](https://git-scm.com/download/mac)。
 
-#### .3 Linux
+#### 3.3 Linux
 
 - `sudo apt-get install git`
 
@@ -56,7 +56,7 @@ git config --global user.email "email@example.com"
   2. 已暂存（**staged**）：表示对一个已修改文件的当前版本做了标记，使之包含在下次的提交中。
   3. 已提交（**committed**）：表示数据已经安全地保存在本地数据库中。
 
-- 基本的 Git 工作流程如下（见附录 1.1）：
+- 基本的 Git 工作流程如下（见附录 9.1）：
 
   1. 在**工作区**中修改文件，文件状态为已修改，未暂存。
 
@@ -90,13 +90,13 @@ git config --global user.email "email@example.com"
   git commit --amend --no-edit
   ```
   
-- *.gitignore*：设置文件的忽略规则，让一些文件不会被记入仓库的更改中。常见的情况是编译出的可执行文件或中间文件，不需要也不应当出现在代码仓库里。参考 [eesast/api](https://github.com/eesast/api/blob/master/.gitignore) 。
+- *.gitignore*：设置文件的忽略规则，让一些文件不会被记入仓库的更改中。常见的情况是编译出的可执行文件或中间文件，不需要也不应当出现在代码仓库里。模版参考 [collection of .gitignore templates](https://github.com/github/gitignore)。
 
-- *.gitattributes*：设置文件的属性。用法参见 [docs.eesast](https://docs.eesast.com/docs/tools/git#gitattributes:~:text=gitattributes%E2%80%8B,%E8%BF%98%E6%98%AF%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E5%B9%B6%E8%BF%9B%E8%A1%8C%E8%A1%8C%E5%B0%BE%E8%BD%AC%E6%8D%A2%E3%80%82) 
+- *.gitattributes*：设置文件的属性。用法参见 [docs.eesast](https://github.com/github/gitignore) 
 
 - 注 1：包括 Git 在内的版本控制系统只能跟踪文本文件的改动。而图片、视频、Microsoft Word 等二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从 100KB 改成了 120KB，但到底改了啥，版本控制系统不知道，也没法知道。
 
-- 注 2：如果某天发现 Git 的命令几乎无法使用，首先应检查是否对当前仓库进行了初始化。
+- 注 2：如果某天发现 Git 的命令几乎无法使用，建议首先检查是否已初始化当前仓库。
 
 #### 5.3 版本管理
 
@@ -152,7 +152,7 @@ git config --global user.email "email@example.com"
 
 - 注 4：`git reset` 中 `-–hard` 参数表示直接回退到指定的 commit，该参数会将 HEAD 指向该 commit，并且工作区中的文件也会和该 comit 保持一致。取消 `-–hard` 参数会使得回退前的版本修改的文件位于工作区，并处于 Unstaged 状态。
 
-- 注 5：Git 的本质是一个文件系统，其工作目录中的所有文件的历史版本以及提交记录都是以文件对象的方式保存在 .git 目录中的，其目录结构见附录 1.2，文件对象的关系（指针）参见附录 1.3。略过这部分内容不会对 Git 的使用产生太大影响。进一步了解 Git 内部存储原理可以参见[这篇 blog](https://www.zhaohuabing.com/post/2019-01-21-git/)。
+- 注 5：Git 的本质是一个文件系统，其工作目录中的所有文件的历史版本以及提交记录都是以文件对象的方式保存在 .git 目录中的，其目录结构见附录 9.2，文件对象的关系（指针）参见附录 9.3。略过这部分内容不会对 Git 的使用产生太大影响。进一步了解 Git 内部存储原理可以参见[这篇 blog](https://www.zhaohuabing.com/post/2019-01-21-git/)。
 
 #### 5.4 分支管理
 
@@ -325,11 +325,11 @@ git config --global user.email "email@example.com"
 
 ### 七、Git 与 vscode
 
-#### 1.1 GUI
+#### 7.1 GUI
 
 - 充分利用图形化界面的优势，vscode 可以很方便地帮助追踪代码修改的历史、进行冲突处理等。
 
-#### 1.2 Copilot
+#### 7.2 Copilot
 
 - vscode 安装 copilot 插件。
 - GitHub 通过学生认证，参考 [Github学生认证及学生包保姆级申请指南](https://zhuanlan.zhihu.com/p/578964972) 。
@@ -344,11 +344,11 @@ git config --global user.email "email@example.com"
 
 ### 九、附录
 
-#### 1.1 工作区与工作流程示意
+#### 9.1 工作区与工作流程示意
 
 <img src="pic/1.png" style="zoom:50%;" />
 
-#### 1.2 .git文件目录
+#### 9.2 .git文件目录
 
 ```ASN.1
 ├── branches             不这么重要，暂不用管                    
@@ -376,7 +376,7 @@ git config --global user.email "email@example.com"
     └── tags            tag对应的commit
 ```
 
-#### 1.3 Git 文件对象的关系示例
+#### 9.3 Git 文件对象的关系示例
 
 ```
             HEAD
