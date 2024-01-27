@@ -256,7 +256,7 @@ git config --global user.email "email@example.com"
 
   ```bash
   git remote add origin https://github.com/username/new_repository.ssh
-  git remote add alex git@github.com:zzdhybthu/Acomics.git
+  git remote add alex git@github.com:username/new_repository.git
   git remote add pb ssh://git@ssh.github.com:443/username/new_repository.ssh
   ```
 
